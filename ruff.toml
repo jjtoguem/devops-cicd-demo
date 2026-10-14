@@ -1,0 +1,14 @@
+# Configuration ruff pour le projet devops-cicd-demo
+
+line-length = 100
+target-version = "py312"
+
+[lint]
+# Règles activées : erreurs (E), warnings (W), imports (F), bonnes pratiques (B)
+select = ["E", "W", "F", "B"]
+
+# Règles ignorées (trop strictes pour un projet pédagogique)
+ignore = [
+    "E501",  # lignes trop longues (on a déjà line-length = 100)
+    "B008",  # fonction dans les arguments par défaut
+]
