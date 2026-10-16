@@ -21,3 +21,4 @@ Projet fil rouge pour apprendre le CI/CD avec GitHub Actions.
 
     python3 -m pytest -v
     <!-- Test de la protection de branche -->
+    <!-- Test bypass : refus attendu -->
