@@ -1,0 +1,35 @@
+name: Publier sur TestPyPI
+
+on:
+  push:
+    tags:
+      - 'v*' # Déclenché uniquement sur les tags (ex: v0.1.0)
+
+jobs:
+  build-and-publish:
+    name: Builder et publier
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Installer les dépendances de build
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+
+      - name: Builder le package
+        run: python -m build
+
+      - name: Publier sur TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          skip-existing: true
